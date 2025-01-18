@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Cabin|Raleway:300");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	transition: ease-in-out 0.3s;
+}
