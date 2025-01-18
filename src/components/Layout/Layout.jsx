@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
 
 				<Nav isOpen={isOpen} toggle={toggle} />
 				<Sidebar isOpen={isOpen} toggle={toggle} />
-				<main className="flex-grow bg-black">{children}</main>
+				<main className="flex-grow bg-blue-300">{children}</main>
 				<Footer />
 			</div>
 		</div>
