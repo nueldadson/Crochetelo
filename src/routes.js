@@ -1,12 +1,16 @@
-// routesAndLinks.js
-import { Home } from './pages';
+// src/routes.js
+// import Home from './pages/Home.jsx';
+import { Home, About } from "./pages"
 
-const routes = [
+export const routes = [
   {
     label: 'Home',
     path: '/',
     component: Home,
-  }
+  },
+  {
+    label: 'About',
+    path: '/about',
+    component: About,
+  },
 ];
-
-export default routes;

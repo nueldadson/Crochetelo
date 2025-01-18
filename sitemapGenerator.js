@@ -1,20 +1,22 @@
+import fs from 'fs';
 import path from 'path';
-import { SitemapGenerator } from 'react-router-sitemap-generator';
-import { routes } from './src/routes.js'; // Ensure the file extension is included
+import { routes } from './src/routes';
 
 const generateSitemap = () => {
-  const baseUrl = 'http://Crochetelo.com'; // Replace with your actual domain
+  const baseUrl = 'http://Crochetelo.com';
+  const paths = routes.map(route => route.path);
 
-  // Generate sitemap by passing your route paths
-  new SitemapGenerator(baseUrl, routes.map(route => route.path))
-    .toFile(path.resolve(__dirname, './public/sitemap.xml')) // Specify output location
-    .then(() => {
-      console.log('Sitemap generated successfully!');
-    })
-    .catch((err) => {
-      console.error('Error generating sitemap:', err);
-    });
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    ${paths.map(routePath => `
+      <url>
+        <loc>${baseUrl}${routePath}</loc>
+      </url>`).join('')}
+  </urlset>`;
+
+  const filePath = path.resolve(__dirname, './public/sitemap.xml');
+  fs.writeFileSync(filePath, sitemap, 'utf-8');
+  console.log(`Sitemap generated successfully at ${filePath}`);
 };
 
-// Run the sitemap generation
 generateSitemap();

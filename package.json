@@ -5,10 +5,10 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build",
+		"build": "vite build && npm run generate-sitemap",
 		"lint": "eslint .",
 		"preview": "vite preview",
-		"generate-sitemap": "node sitemapGenerator.js"
+		"generate-sitemap": "vite-node sitemapGenerator.js"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -27,6 +27,11 @@
 		"styled-components": "^6.1.13"
 	},
 	"devDependencies": {
+		"@babel/cli": "^7.26.4",
+		"@babel/core": "^7.26.0",
+		"@babel/node": "^7.26.0",
+		"@babel/preset-env": "^7.26.0",
+		"@babel/preset-react": "^7.26.3",
 		"@eslint/js": "^9.17.0",
 		"@types/react": "^18.3.17",
 		"@types/react-dom": "^18.3.5",
@@ -37,10 +42,12 @@
 		"eslint-plugin-react": "^7.37.2",
 		"eslint-plugin-react-hooks": "^5.0.0",
 		"eslint-plugin-react-refresh": "^0.4.16",
+		"esm": "^3.2.25",
 		"globals": "^15.13.0",
 		"postcss": "^8.4.49",
 		"tailwindcss": "^3.4.17",
-		"vite": "^6.0.3",
+		"vite": "^6.0.7",
+		"vite-node": "^3.0.2",
 		"workbox-cli": "^7.3.0"
 	}
 }

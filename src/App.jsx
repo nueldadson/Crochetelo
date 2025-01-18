@@ -2,7 +2,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
-import routes from "./routes"; // Import the combined routes and links array
+import { routes } from "./routes"; // Correct
 
 const App = () => {
   return (

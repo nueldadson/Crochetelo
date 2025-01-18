@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import { Logowhite, Logo } from "../../assets/images"; // Ensure image imports are correct
-import routes from "../../routes"; // Import your combined routes and links
+import { routes } from "../../routes.js"; // Named import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
