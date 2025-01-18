@@ -1,23 +1,25 @@
+// src/App.jsx
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
-import { Reveal } from "react-awesome-reveal";
-import { Home } from "./pages";
-import "./App.css";
+import routes from "./routes"; // Import the combined routes and links array
 
 const App = () => {
-	return (
-		<Layout>
-			<Reveal
-				globalDefaults={{
-					triggerOnce: true, // Trigger animations only once
-					rootMargin: "-50px 0px", // Start animations earlier
-					threshold: 0.05, // 10% of the element in the viewport triggers the animation
-				}}
-			>
-				<Home />
-			</Reveal>
-		</Layout>
-	);
+  return (
+    <Router>
+      <Layout>
+        <Routes>
+          {routes.map(({ path, component: Component }) => (
+            <Route
+              key={path}
+              path={path}
+              element={<Component />}  // JSX syntax
+            />
+          ))}
+        </Routes>
+      </Layout>
+    </Router>
+  );
 };
 
 export default App;

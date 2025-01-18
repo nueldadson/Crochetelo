@@ -10,7 +10,7 @@ const Footer = () => {
 			{/* Footer Copyright */}
 			<div className="text-center">
 				<p className="text-sm text-gray-500">
-					&copy; {new Date().getFullYear()} Mediaone. All rights reserved.
+					&copy; {new Date().getFullYear()} Crochetelo. All rights reserved.
 				</p>
 			</div>
 		</footer>
