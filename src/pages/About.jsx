@@ -3,7 +3,7 @@ import {} from "../components";
 
 const About = () => {
   return (
-    <div>verv
+    <div>About
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Nav from "./Nav";
 import Footer from "./Footer";
-import Sidebar from "./sidebar/Sidebar";
+// import Sidebar from "./sidebar/Sidebar";
+import TopNav from "./TopNav";
 
 const Layout = ({ children }) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -21,9 +22,9 @@ const Layout = ({ children }) => {
 
 				{/* Line 3 */}
 				<div className="fixed top-0 right-1/4 w-[2px] h-screen bg-line animate-line-flow z-50"></div>
-
+				<TopNav />
 				<Nav isOpen={isOpen} toggle={toggle} />
-				<Sidebar isOpen={isOpen} toggle={toggle} />
+				{/* <Sidebar isOpen={isOpen} toggle={toggle} /> */}
 				<main className="flex-grow bg-blue-300">{children}</main>
 				<Footer />
 			</div>

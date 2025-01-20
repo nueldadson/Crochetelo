@@ -1,0 +1,16 @@
+import React from 'react'
+
+const TopNav = () => {
+  return (
+    <div className="w-full bg-brown text-white flex flex-row justify-centr items-start px-40">
+      <div>
+        test``
+      </div>
+      <div>
+        test``
+      </div>
+    </div>
+  )
+}
+
+export default TopNav
