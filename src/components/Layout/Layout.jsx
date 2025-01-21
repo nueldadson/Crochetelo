@@ -13,21 +13,19 @@ const Layout = ({ children }) => {
 
 	return (
 		<div className="min-h-screen flex flex-col">
+		<div className="">
 			{/* Main Layout */}
-			<div className="flex-grow">
-				<div className="fixed top-0 left-1/4 w-[2px] h-screen bg-line animate-line-flow z-50"></div>
-
-				{/* Line 2 */}
-				<div className="fixed top-0 left-1/2 w-[2px] h-screen bg-line animate-line-flow z-50"></div>
-
-				{/* Line 3 */}
-				<div className="fixed top-0 right-1/4 w-[2px] h-screen bg-line animate-line-flow z-50"></div>
 				<TopNav />
-				<Nav isOpen={isOpen} toggle={toggle} />
+				<div className="flex w-full bg-white h-fit justify-cente flex-col">
+				<div className="lg:px-12 px-3 max-sm:px-0 mt-[62px] max-sm:mt-[42px] flex w-full justify-center lex-col fixed z-40">
+					<Nav isOpen={isOpen} toggle={toggle} />
+				</div>
+					<main className="flex-grow bg-blue-300 stick -mt-[95p] max-sm:-mt-[75p]">{children}</main>
+					<Footer />
+
+				</div>
 				{/* <Sidebar isOpen={isOpen} toggle={toggle} /> */}
-				<main className="flex-grow bg-blue-300">{children}</main>
-				<Footer />
-			</div>
+		</div>
 		</div>
 	);
 };

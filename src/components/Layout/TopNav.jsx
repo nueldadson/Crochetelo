@@ -2,7 +2,7 @@ import React from 'react'
 
 const TopNav = () => {
   return (
-    <div className="w-full bg-brown text-white flex flex-row justify-centr items-start px-40">
+    <div className="w-full bg-brown text-white flex flex-row justify-centr items-start h-[42px] fixed z-40">
       <div>
         test``
       </div>

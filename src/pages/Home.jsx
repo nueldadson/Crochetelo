@@ -3,7 +3,7 @@ import {} from "../components";
 
 const Home = () => {
 	return (
-		<div>jno
+		<div className="h-[1000px]">
 		</div>
 	);
 };
