@@ -9,7 +9,7 @@ export const routes = [
     path: '/',
     component: Home,
     title: "Crochetelo | Unique Handmade Crochet Fashion",
-    description: "Explore Crochetelo’s handcrafted crochet designs for men and women who want to stand out.",
+    description: "Explore Crochetelo’s handcrafted crochet design products for men and women who want to stand out.",
   },
   {
     label: 'Shop',
