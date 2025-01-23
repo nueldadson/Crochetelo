@@ -34,7 +34,7 @@ const Nav = () => {
 			{/* Navigation Bar */}
 			<header
 				className={
-					"bg-[linear-gradient(90.24deg,_rgba(255,253,250,0.45)_0.56%,_rgba(41,26,7,0.45)_79.49%)] w-full h-[75px] rounded-[100px] flex items-center justify-between z-40 px-20 transition-all duration-300 max-sm:justify-between max-sm:px-8 max-sm:rounded-none"
+					"bg-[linear-gradient(90.24deg,_rgba(255,253,250,0.45)_0.56%,_rgba(41,26,7,0.45)_79.49%)] w-full h-[75px] rounded-[100px] flex items-center justify-between z-40 px-20 transition-all duration-300 max-sm:justify-between max-sm:px-5 max-sm:rounded-none"
 				}
 			>
 				{/* Logo */}
@@ -48,12 +48,12 @@ const Nav = () => {
 
 				{/* Navigation */}
 				<nav className="flex h-full items-center">
-					<ul className="flex space-x-6 justify-end mr-5 items-center max-sm:hidden text-md">
+					<ul className="flex space-x-6 justify-end mr-5 items-center max-[1050px]:hidden text-md">
 						{routes.map(({ label, path }) => (
 							<li key={path}>
 								<Link
 									to={path}
-									className={`font-montserrat leading-normal font-semibold hover:text-secondary ${
+									className={`hover:text-brightbrown leading-normal font-semibold hover:text-secondary ${
 										isScrolled ? "text-white" : "text-white"
 									}`}
 								>
@@ -62,7 +62,7 @@ const Nav = () => {
 							</li>
 						))}
 					</ul>
-					<div className="flex justify-end hidden max-sm:block">
+					<div className="flex justify-end hidden max-[1200px]:block">
 						<FontAwesomeIcon
 							icon={isOpen ? faTimes : faBars}
 							className={`text-[24px] ${isOpen ? "text-black" : "text-white"}`}
@@ -71,17 +71,17 @@ const Nav = () => {
 					</div>
 				</nav>
 
-				<div className="max-sm:hidden flex h-full items-center gap-8 text-white flex-row">
-					<FaSearch />
-					<FaShoppingCart />
-					<FaHeart />
-					<FaUser />
+				<div className="max-[1200px]:hidden flex h-full items-center gap-8  text-white flex-row">
+					<FaSearch className="hover:text-brightbrown cursor-pointer" />
+					<FaShoppingCart className="hover:text-brightbrown cursor-pointer" />
+					<FaHeart className="hover:text-brightbrown cursor-pointer" />
+					<FaUser className="hover:text-brightbrown cursor-pointer" />
 				</div>
 			</header>
 
 			{/* Sidebar */}
 			<div
-				className={`py-10 px-12 z-50 fixed top-0 right-0 h-[100vh] overflow-scroll w-full bg-white text-black transition-all duration-300 transform ${
+				className={`py-10 px-12 z-50 fixed top-0 right-0 h-[100vh] overflow-y-scroll w-full bg-white text-black transition-all duration-300 transform ${
 					isOpen ? "translate-x-0" : "translate-x-full"
 				}`}
 			>
@@ -92,9 +92,12 @@ const Nav = () => {
 				/>
 				<ul className="">
 					{routes.map(({ label, path }) => (
-						<li key={path} className="py-8 border-b-[0.1px] border-b-slate-400">
+						<li
+							key={path}
+							className="py-8 border-b-[0.1px] border-b-slate-400 hover:text-brightbrown cursor-pointer"
+						>
 							<Link
-                to={path}
+								to={path}
 								onClick={() => {
 									setIsOpen(false); // Close the sidebar
 									window.scrollTo(0, 0); // Scroll to the top (optional)
@@ -106,11 +109,11 @@ const Nav = () => {
 						</li>
 					))}
 				</ul>
-				<div className="py-8 border-b-[0.1px] hidden max-sm:flex w-full gap-10 text-white max-sm:text-lightbrown max-sm:flex-row justify-center text-2xl">
-					<FaSearch />
-					<FaShoppingCart />
-					<FaHeart />
-					<FaUser />
+				<div className="py-8 border-b-[0.1px] hidden max-[1050px]:flex w-full gap-10 text-lightbrown max-sm:flex-row justify-center text-2xl">
+					<FaSearch className="hover:text-brightbrown cursor-pointer" />
+					<FaShoppingCart className="hover:text-brightbrown cursor-pointer" />
+					<FaHeart className="hover:text-brightbrown cursor-pointer" />
+					<FaUser className="hover:text-brightbrown cursor-pointer" />
 				</div>
 				<div className="flex justify-center mt-4 space-x-6 text-4xl text-brown mb-10">
 					<a

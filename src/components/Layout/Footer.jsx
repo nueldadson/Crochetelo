@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 
 const Footer = () => {
 	return (
-		<footer className="bg-black text-gray-200 py-12 px-6 sm:px-12">
+		<footer className="bg-black text-gray-200  w-full">
 
 			{/* Footer Copyright */}
 			<div className="text-center">
