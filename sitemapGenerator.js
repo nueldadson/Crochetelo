@@ -3,7 +3,7 @@ import path from 'path';
 import { routes } from './src/routes';
 
 const generateSitemap = () => {
-  const baseUrl = 'http://Crochetelo.com';
+  const baseUrl = 'https://Crochetelo.com';
   const paths = routes.map(route => route.path);
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
