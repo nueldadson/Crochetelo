@@ -21,9 +21,6 @@ const Hero = () => {
 				<Button className="mt-8 max-sm:mt-20 max-sm:w-[100%] max-sm:rounded-lg" children="Shop Now" />
 			</div>
 
-			{/* Button container (near the bottom for easy thumb reach) */}
-			{/* <div className="w-full lex ustify-center px-4">
-			</div> */}
 		</div>
 	);
 };

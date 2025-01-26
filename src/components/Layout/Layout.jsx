@@ -22,7 +22,7 @@ const Layout = ({ children }) => {
 					<main className="w-full h-fit">
 						{children}
 					</main>
-					<Footer />
+					{/* <Footer /> */}
 				</div>
 				{/* <Sidebar isOpen={isOpen} toggle={toggle} /> */}
 			</div>
