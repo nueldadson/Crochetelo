@@ -1,87 +1,111 @@
 import React from "react";
 import { Fade } from "react-awesome-reveal";
-
 import "leaflet/dist/leaflet.css";
+import { Link } from "react-router-dom";
+import { Logowhite } from "../../assets/images";
+import { routes } from "../../routes.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import {
+  faLinkedin,
+  faInstagram,
+  faFacebook,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
-	return (
-		<footer className="bg-black text-gray-200  w-full">
+  return (
+		<footer
+			className="relative w-full h-[fit-content] bg-cover bg-top bg-center"
+			style={{
+				backgroundImage:
+					"url('https://res.cloudinary.com/dt1vxscki/image/upload/v1737933186/BLAC9240_sc0nv3.webp')",
+			}}
+		>
+			<img
+				src="https://res.cloudinary.com/dt1vxscki/image/upload/v1737932034/grain_Texture_ztpl1d.webp"
+				alt=""
+				className="w-full absolute h-[50%] z-20"
+			/>
+			<div className="relative w-full h-full z-30 py-8 px-12 max-sm:px-6">
+				{/* Logo */}
+				<Link to="/" className="flex absolut items-center w-48 max-sm:w-28">
+					<img src={Logowhite} alt="Company Logo" className="h-full" />
+				</Link>
 
-			{/* Footer Copyright */}
-			<div className="text-center">
-				<p className="text-sm text-gray-500">
-					&copy; {new Date().getFullYear()} Crochetelo. All rights reserved.
+				<p className="font-jost font-extrabold mt-10 max-sm:mt-6 text-8xl max-lg:text-7xl max-md:text-6xl max-sm:text-4xl max-[400px]:text-2xl text-center h-fit bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">
+					Want to see More?
 				</p>
+
+				<div className="flex justify-between mt-10 max-md:mt-24 max-md:flex-col gap-12">
+					<div className="right-[50%] -mr-[104px] bg-white px-12 py-4 rounded-full z-40 absolute text-black max-md:-mt-16 max-md:scale-90 font-bold">
+						See Catalogue
+					</div>
+					<ul>
+						{routes.slice(0, 6).map(({ label, path }) => (
+							<li key={path} className="py-4 text-white hover:text-brightbrown">
+								<Link
+									to={path}
+									className={`text-2xl font-medium block"
+                    }`}
+								>
+									{label}
+								</Link>
+							</li>
+						))}
+					</ul>
+					<div className=" text-white font-medium self-end max-md:self-start w-52">
+						Social Links
+					</div>
+				</div>
 			</div>
-			<div className="relative w-full h-[788px] bg-[#F5F5F5]">
-
-
-      {/* Sidebar Menu */}
-      <div className="absolute top-[317px] left-[40px] flex flex-col gap-[32px] text-[#DEDAD7] text-[24px] leading-[29px]">
-        {["Home", "Shop", "Custom Order", "Contact", "About", "Choose Currency", "FAQs"].map(
-          (item, index) => (
-            <a key={index} href="#" className="hover:text-white">
-              {item}
-            </a>
-          )
-        )}
-      </div>
-
-      {/* Main Text Section */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 top-[154px] flex flex-col items-center gap-[24px] text-center">
-        <h1 className="text-[100px] leading-[144px] font-jost font-bold bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">
-          Want to see More?
-        </h1>
-        <button className="bg-white px-[32px] py-[20px] rounded-full flex items-center gap-[8px]">
-          <span className="text-black text-[16px] font-medium">See Catalogue</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-[24px] h-[24px]"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="5" y1="12" x2="19" y2="12" />
-            <polyline points="12 5 19 12 12 19" />
-          </svg>
-        </button>
-      </div>
-
-      {/* Footer Section */}
-      <div className="absolute bottom-[40px] left-1/2 transform -translate-x-1/2 flex justify-between w-[827px] text-white opacity-40">
-        <span className="text-[16px] leading-[21px] font-medium">© 2024 — copyright</span>
-        <div className="flex gap-[111px]">
-          <a href="#" className="text-[16px] leading-[21px] font-medium lowercase">
-            privacy
-          </a>
-          <a href="#" className="text-[10px] leading-[13px] font-medium lowercase">
-            terms
-          </a>
-        </div>
-      </div>
-
-      {/* Social Links */}
-      <div className="absolute right-[40px] bottom-[40px] flex flex-col items-start gap-[38px] text-[#F3F6EC]">
-        <span className="text-[16px] font-helvetica font-medium">Social Links</span>
-        <div className="flex gap-[12px]">
-          {["facebook", "twitter", "linkedin", "instagram"].map((platform, index) => (
-            <div
-              key={index}
-              className="w-[36px] h-[36px] bg-[#292D32] flex items-center justify-center rounded-full"
-            >
-              <img
-                src={`/path/to/${platform}-logo.png`}
-                alt={`${platform} logo`}
-                className="w-[24px] h-[24px]"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+			{/* Footer Copyright */}
+			<div
+				className="text-center flex justify-between w-full px-12 max-sm:px-6 max-md:flex-col-reverse items-center max-md:items-start
+        "
+			>
+				<p className="text-sm text-gray-500 max-md:mb-6">
+					&copy; {new Date().getFullYear()} - Crochetelo. All rights reserved.
+				</p>
+				<div className="flex justify-between gap-6 text-4xl text-white mb-4">
+					<a
+						href="https://www.facebook.com/crochetelo"
+						title="Facebook"
+						aria-label="Facebook"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<FontAwesomeIcon icon={faFacebook} />
+					</a>
+					<a
+						href="https://x.com/Crochetelo_"
+						title="Twitter"
+						aria-label="Twitter"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<FontAwesomeIcon icon={faTwitter} />
+					</a>
+					<a
+						href="https://linkedin.com"
+						title="LinkedIn"
+						aria-label="LinkedIn"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<FontAwesomeIcon icon={faLinkedin} />
+					</a>
+					<a
+						href="https://www.instagram.com/crochetelo_/"
+						title="Instagram"
+						aria-label="Instagram"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<FontAwesomeIcon icon={faInstagram} />
+					</a>
+				</div>
+			</div>
 		</footer>
 	);
 };
