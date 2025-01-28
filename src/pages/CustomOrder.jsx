@@ -5,7 +5,7 @@ import { CustomOrderForm } from "../components";
 const CustomOrder = () => {
   return (
 		<div
-			className="relative w-full bg-cover bg-center bg-no-repeat h-[630px] max-md:h-[380px] max-sm:h-[300x] max-[420px]:h-[300px] flex overflow-hidden"
+			className="relative w-full bg-cover bg-center bg-no-repeat h-[630px] max-md:h-[380px] max-sm:h-[300x] max-[420px]:h-[300px] flex overflow-hidden flex-col"
 			style={{ backgroundImage: `url(${CustomOrderHero})` }}
 		>
 			<div className="relative w-full flex flex-col px-12 max-sm:px-6 justify-center items-center h-full">
