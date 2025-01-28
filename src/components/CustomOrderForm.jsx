@@ -65,71 +65,77 @@ export default function CustomOrderForm() {
 	const today = new Date().toISOString().split("T")[0];
 
 	return (
-		<div className="mx-auto p-6 bg-white shadow-lg rounded-lg absolute w-full mt-[30px] z-50">
-			<h2 className="text-2xl font-bold text-center text-gray-800 mb-5">
+		<div className="px-12 pb-12 relative">
+		<div className="mx-auto pb-12 bg-white shadow-lg w-full z-50 md:-mt-52">
+			<h2 className="text-[24px] px-12 font-semibold text-left text-gray-800 mb-5 pt-8 pb-8 border-b-2 border-gray-400">
 				Input Order Description
 			</h2>
 
-			<form onSubmit={handleFormSubmit} className="space-y-4">
-				<div>
-					<label className="block font-medium">Name</label>
+			<form
+				onSubmit={handleFormSubmit}
+				className="flex flex-col gap-[30px] px-12"
+			>
+				<div className="flex flex-col gap-[8px]">
+					<label className="block font-medium text-[16px]">Name</label>
 					<input
 						type="text"
 						name="name"
 						value={formData.name}
 						onChange={handleChange}
-						className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-indigo-300"
+						className="text-[15px] font-medium w-full px-6 min-h-[55px] rounded-[15px] border-[1px] border-[#D3D3D4] bg-[#FBF7F7] focus:ring focus:ring-violet-300"
 						placeholder="Enter your name"
 						required
 					/>
 				</div>
 
-				<div>
-					<label className="block font-medium">Email</label>
+				<div className="flex flex-col gap-[8px]">
+					<label className="block font-medium text-[16px]">Email</label>
 					<input
 						type="email"
 						name="email"
 						value={formData.email}
 						onChange={handleChange}
-						className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-indigo-300"
+						className="text-[15px] font-medium w-full px-6 min-h-[55px] rounded-[15px] border-[1px] border-[#D3D3D4] bg-[#FBF7F7] focus:ring focus:ring-violet-300"
 						placeholder="Enter your email"
 						required
 					/>
 					<ValidationError prefix="Email" field="email" errors={state.errors} />
 				</div>
 
-				<div>
-					<label className="block font-medium">Instagram Handle</label>
+				<div className="flex flex-col gap-[8px]">
+					<label className="block font-medium text-[16px]">
+						Instagram Handle
+					</label>
 					<input
 						type="text"
 						name="instagram"
 						value={formData.instagram}
 						onChange={handleChange}
-						className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-indigo-300"
+						className="text-[15px] font-medium w-full px-6 min-h-[55px] rounded-[15px] border-[1px] border-[#D3D3D4] bg-[#FBF7F7] focus:ring focus:ring-violet-300"
 						placeholder="@yourhandle"
 					/>
 				</div>
 
-				<div>
-					<label className="block font-medium">Date</label>
+				<div className="flex flex-col gap-[8px]">
+					<label className="block font-medium text-[16px]">Date</label>
 					<input
 						type="date"
 						name="date"
 						value={formData.date}
 						onChange={handleChange}
-						className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-indigo-300"
+						className="uppercase text-[15px] font-medium w-full px-6 min-h-[55px] rounded-[15px] border-[1px] border-[#D3D3D4] bg-[#FBF7F7] focus:ring focus:ring-violet-300"
 						placeholder="MM/DD/YYYY"
 						min={today}
 					/>
 				</div>
 
-				<div>
-					<label className="block font-medium">Your Message</label>
+				<div className="flex flex-col gap-[8px]">
+					<label className="block font-medium text-[16px]">Your Message</label>
 					<textarea
 						name="message"
 						value={formData.message}
 						onChange={handleChange}
-						className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-indigo-300"
+						className="py-6 text-[15px] font-medium w-full px-6 min-h-[160px] rounded-[15px] border-[1px] border-[#D3D3D4] bg-[#FBF7F7] focus:ring focus:ring-violet-300"
 						placeholder="Type your message here..."
 						required
 					/>
@@ -140,20 +146,21 @@ export default function CustomOrderForm() {
 					/>
 				</div>
 
-				<div>
-					{state.submitting && (
-						<p className="text-center text-gray-500">Submitting...</p>
-					)}
-				</div>
-
 				<button
 					type="submit"
 					disabled={state.submitting}
-					className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700"
-				>
+					className="w-full bg-[#770767] text-white h-[80px] rounded-[12px] hover:bg-[#ed4bd5]"
+					>
 					{state.submitting ? "Submitting..." : "Submit"}
 				</button>
+
+					<div className="mb-12 bg-green-500">
+						{state.submitting && (
+							<p className="text-center text-gray-500 ">Submitting...</p>
+						)}
+					</div>
 			</form>
-		</div>
+			</div>
+			</div>
 	);
 }
