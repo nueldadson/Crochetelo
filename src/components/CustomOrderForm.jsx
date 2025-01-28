@@ -13,7 +13,7 @@ export default function CustomOrderForm() {
 	const [state, handleSubmit] = useForm("mnnjpygo");
 
 	const googleSheetURL =
-		"https://script.google.com/macros/s/AKfycbzVxI4EnXMoDO45jdft7tRiNWAxxJDwTNV2DX9uE2cgNB9vtVByytAZOK2B9jBlLDZG5A/exec";
+		"https://script.google.com/macros/s/AKfycbwQ1FTr_yWUiYR2xEgXJFKi4xTtcG22DjSd9bHEB0kV3x05jpdCeQoLmf0kGz2m2lrGnQ/exec";
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -22,22 +22,18 @@ export default function CustomOrderForm() {
 
 	const sendToGoogleSheet = async () => {
 		try {
-			const response = await fetch(googleSheetURL, {
+			await fetch(googleSheetURL, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify(formData),
+				mode: "no-cors", // Use 'no-cors' mode
 			});
-			if (!response.ok) {
-				throw new Error("Failed to send data to Google Sheets");
-			}
-			console.log("Data sent to Google Sheets!");
+
+			console.log("Data sent to Google Sheets (no response in no-cors mode).");
 		} catch (error) {
 			console.error("Error sending data to Google Sheets:", error);
-			alert(
-				"There was an error sending your data to Google Sheets. Please try again.",
-			);
 		}
 	};
 
@@ -45,9 +41,9 @@ export default function CustomOrderForm() {
 		e.preventDefault();
 
 		// Submit to Formspree
-		await handleSubmit(e); // Formspree's state will automatically update
+		const formspreeResponse = await handleSubmit(e);
 
-		if (state.succeeded) {
+		if (formspreeResponse.succeeded) {
 			// Send to Google Sheets after Formspree submission succeeds
 			await sendToGoogleSheet();
 
