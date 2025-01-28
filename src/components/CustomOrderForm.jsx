@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 
 export default function CustomOrderForm() {
@@ -10,10 +10,10 @@ export default function CustomOrderForm() {
 		message: "",
 	});
 
-	const [state, handleSubmit] = useForm("mnnjpygo");
-
 	const googleSheetURL =
 		"https://script.google.com/macros/s/AKfycbwQ1FTr_yWUiYR2xEgXJFKi4xTtcG22DjSd9bHEB0kV3x05jpdCeQoLmf0kGz2m2lrGnQ/exec";
+
+	const [state, handleSubmit] = useForm("mnnjpygo"); // Formspree hook
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -22,39 +22,43 @@ export default function CustomOrderForm() {
 
 	const sendToGoogleSheet = async () => {
 		try {
+			console.log("Sending data to Google Sheets...");
 			await fetch(googleSheetURL, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify(formData),
-				mode: "no-cors", // Use 'no-cors' mode
+				mode: "no-cors",
 			});
-
-			console.log("Data sent to Google Sheets (no response in no-cors mode).");
+			console.log("Data successfully sent to Google Sheets.");
 		} catch (error) {
 			console.error("Error sending data to Google Sheets:", error);
+			alert(
+				"There was an error sending your data to Google Sheets. Please try again.",
+			);
 		}
 	};
 
 	const handleFormSubmit = async (e) => {
-		e.preventDefault();
-
+		e.preventDefault(); // Prevent default form submission behavior
+    
+    await sendToGoogleSheet();
 		// Submit to Formspree
-		const formspreeResponse = await handleSubmit(e);
+		const formspreeResult = await handleSubmit(formData);
+    setFormData({
+      name: "",
+      email: "",
+      instagram: "",
+      date: "",
+      message: "",
+    });
+		if (formspreeResult?.succeeded) {
+			console.log("Formspree submission successful.");
 
-		if (formspreeResponse.succeeded) {
-			// Send to Google Sheets after Formspree submission succeeds
-			await sendToGoogleSheet();
+			// Clear form fields
 
-			// Reset the form after successful submission
-			setFormData({
-				name: "",
-				email: "",
-				instagram: "",
-				date: "",
-				message: "",
-			});
+			// Submit to Google Sheets
 		}
 	};
 
@@ -139,11 +143,6 @@ export default function CustomOrderForm() {
 				<div>
 					{state.submitting && (
 						<p className="text-center text-gray-500">Submitting...</p>
-					)}
-					{state.succeeded && (
-						<p className="text-center text-green-600">
-							Order submitted successfully!
-						</p>
 					)}
 				</div>
 
