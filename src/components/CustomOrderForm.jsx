@@ -13,7 +13,7 @@ export default function CustomOrderForm() {
 	const [state, handleSubmit] = useForm("mnnjpygo");
 
 	const googleSheetURL =
-		"https://script.google.com/macros/s/AKfycbwuhMqadXwqKhg76j8_E8kTb_4cJSdqGcSUjjmL-uHGSecE_hp-4RbwqD91G-rj3OfCcg/exec";
+		"https://script.google.com/macros/s/AKfycbwnFcpyczLSoW5ozs0YXQHyGx6nZDD2PtARJ3vQYBzdKXrMfjiRiwer1csdxvw-XudnwA/exec";
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -22,16 +22,22 @@ export default function CustomOrderForm() {
 
 	const sendToGoogleSheet = async () => {
 		try {
-			await fetch(googleSheetURL, {
+			const response = await fetch(googleSheetURL, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify(formData),
 			});
+			if (!response.ok) {
+				throw new Error("Failed to send data to Google Sheets");
+			}
 			console.log("Data sent to Google Sheets!");
 		} catch (error) {
 			console.error("Error sending data to Google Sheets:", error);
+			alert(
+				"There was an error sending your data to Google Sheets. Please try again.",
+			);
 		}
 	};
 
@@ -39,26 +45,27 @@ export default function CustomOrderForm() {
 		e.preventDefault();
 
 		// Submit to Formspree
-		const formspreeSubmit = handleSubmit(e);
-		// Wait for Formspree to complete
-		if (formspreeSubmit) {
+		await handleSubmit(e); // Formspree's state will automatically update
+
+		if (state.succeeded) {
 			// Send to Google Sheets after Formspree submission succeeds
 			await sendToGoogleSheet();
+
+			// Reset the form after successful submission
+			setFormData({
+				name: "",
+				email: "",
+				instagram: "",
+				date: "",
+				message: "",
+			});
 		}
 	};
-
-	if (state.succeeded) {
-		return (
-			<p className="text-center text-green-600">
-				Thanks for submitting your order!
-			</p>
-		);
-	}
 
 	const today = new Date().toISOString().split("T")[0];
 
 	return (
-		<div className=" mx-auto p-6 bg-white shadow-lg rounded-lg absolute w-full mt-[30px] z-50">
+		<div className="mx-auto p-6 bg-white shadow-lg rounded-lg absolute w-full mt-[30px] z-50">
 			<h2 className="text-2xl font-bold text-center text-gray-800 mb-5">
 				Input Order Description
 			</h2>
@@ -131,6 +138,17 @@ export default function CustomOrderForm() {
 						field="message"
 						errors={state.errors}
 					/>
+				</div>
+
+				<div>
+					{state.submitting && (
+						<p className="text-center text-gray-500">Submitting...</p>
+					)}
+					{state.succeeded && (
+						<p className="text-center text-green-600">
+							Order submitted successfully!
+						</p>
+					)}
 				</div>
 
 				<button
