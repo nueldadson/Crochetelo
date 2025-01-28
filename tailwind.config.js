@@ -6,6 +6,7 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				jost: ["Jost", "sans-serif"],
+				inter: ["Inter", "sans-serif"],
 			},
 			colors: {
 				brown: "#150601",

@@ -1,6 +1,6 @@
 import React from "react";
 import { Heroimg } from "../../assets/images";
-import { Button } from "../../components";
+import { Button } from "..";
 
 const Hero = () => {
 	return (
