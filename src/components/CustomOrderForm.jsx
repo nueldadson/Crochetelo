@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useForm, ValidationError } from "@formspree/react";
 
 export default function CustomOrderForm() {
 	const [formData, setFormData] = useState({
@@ -9,49 +10,50 @@ export default function CustomOrderForm() {
 		message: "",
 	});
 
+	const [state, handleSubmit] = useForm("mnnjpygo");
+
+	const googleSheetURL =
+		"https://script.google.com/macros/s/AKfycbwuhMqadXwqKhg76j8_E8kTb_4cJSdqGcSUjjmL-uHGSecE_hp-4RbwqD91G-rj3OfCcg/exec";
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
 	};
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-
-		// Validate email
-		if (!formData.email.includes("@")) {
-			alert("Please enter a valid email address.");
-			return;
-		}
-
-		// Validate Instagram handle
-		if (formData.instagram && !formData.instagram.startsWith("@")) {
-			alert("Instagram handle must start with '@'.");
-			return;
-		}
-
-		// Validate date (prevent past dates)
-		const today = new Date();
-		const selectedDate = new Date(formData.date);
-		if (formData.date && selectedDate < today.setHours(0, 0, 0, 0)) {
-			alert("Please select a valid date in the future.");
-			return;
-		}
-
-		// Create mailto link
-		const subject = encodeURIComponent("New Order Description");
-		const body = encodeURIComponent(
-			`Name: ${formData.name}\nEmail: ${formData.email}\nInstagram: ${formData.instagram}\nDate: ${formData.date}\n\nMessage:\n${formData.message}`,
-		);
-
-		const mailtoLink = `mailto:contact@crochetelo.com?subject=${subject}&body=${body}`;
-
-		// Open default mail client
+	const sendToGoogleSheet = async () => {
 		try {
-			window.location.href = mailtoLink;
+			await fetch(googleSheetURL, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formData),
+			});
+			console.log("Data sent to Google Sheets!");
 		} catch (error) {
-			alert("Failed to open the email client. Please try again.");
+			console.error("Error sending data to Google Sheets:", error);
 		}
 	};
+
+	const handleFormSubmit = async (e) => {
+		e.preventDefault();
+
+		// Submit to Formspree
+		const formspreeSubmit = handleSubmit(e);
+		// Wait for Formspree to complete
+		if (formspreeSubmit) {
+			// Send to Google Sheets after Formspree submission succeeds
+			await sendToGoogleSheet();
+		}
+	};
+
+	if (state.succeeded) {
+		return (
+			<p className="text-center text-green-600">
+				Thanks for submitting your order!
+			</p>
+		);
+	}
 
 	const today = new Date().toISOString().split("T")[0];
 
@@ -61,7 +63,7 @@ export default function CustomOrderForm() {
 				Input Order Description
 			</h2>
 
-			<form onSubmit={handleSubmit} className="space-y-4">
+			<form onSubmit={handleFormSubmit} className="space-y-4">
 				<div>
 					<label className="block font-medium">Name</label>
 					<input
@@ -86,6 +88,7 @@ export default function CustomOrderForm() {
 						placeholder="Enter your email"
 						required
 					/>
+					<ValidationError prefix="Email" field="email" errors={state.errors} />
 				</div>
 
 				<div>
@@ -123,13 +126,19 @@ export default function CustomOrderForm() {
 						placeholder="Type your message here..."
 						required
 					/>
+					<ValidationError
+						prefix="Message"
+						field="message"
+						errors={state.errors}
+					/>
 				</div>
 
 				<button
 					type="submit"
+					disabled={state.submitting}
 					className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700"
 				>
-					Send Email
+					{state.submitting ? "Submitting..." : "Submit"}
 				</button>
 			</form>
 		</div>
