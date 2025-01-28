@@ -13,7 +13,7 @@ export default function CustomOrderForm() {
 	const [state, handleSubmit] = useForm("mnnjpygo");
 
 	const googleSheetURL =
-		"https://script.google.com/macros/s/AKfycbwnFcpyczLSoW5ozs0YXQHyGx6nZDD2PtARJ3vQYBzdKXrMfjiRiwer1csdxvw-XudnwA/exec";
+		"https://script.google.com/macros/s/AKfycbzVxI4EnXMoDO45jdft7tRiNWAxxJDwTNV2DX9uE2cgNB9vtVByytAZOK2B9jBlLDZG5A/exec";
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
