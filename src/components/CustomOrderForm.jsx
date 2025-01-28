@@ -56,7 +56,7 @@ export default function CustomOrderForm() {
 	const today = new Date().toISOString().split("T")[0];
 
 	return (
-		<div className=" mx-auto p-6 bg-white shadow-lg rounded-lg absolute w-full -[630px]">
+		<div className=" mx-auto p-6 bg-white shadow-lg rounded-lg absolute w-full mt-[30px] z-50">
 			<h2 className="text-2xl font-bold text-center text-gray-800 mb-5">
 				Input Order Description
 			</h2>
