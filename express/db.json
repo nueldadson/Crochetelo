@@ -1,0 +1,186 @@
+{
+  "users": [
+    {
+      "id": "user_001",
+      "name": "John Doe",
+      "gender": "male",
+      "email": "john@example.com",
+      "phoneNumber": "+234123456789",
+      "password": "userpassword",
+      "role": "user",
+      "cart": {
+        "items": [
+          {
+            "productId": "prod_001",
+            "quantity": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "user_002",
+      "name": "Jane Smith",
+      "gender": "female",
+      "email": "jane@example.com",
+      "phoneNumber": "+234987654321",
+      "password": "user2pass",
+      "role": "user",
+      "cart": {
+        "items": []
+      }
+    },
+    {
+      "id": "user_admin",
+      "name": "Admin Guy",
+      "gender": "male",
+      "email": "admin@example.com",
+      "phoneNumber": "+234000111222",
+      "password": "admin123",
+      "role": "admin",
+      "cart": {
+        "items": [
+          {
+            "productId": "prod_001",
+            "quantity": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "user_1737676131404",
+      "name": "Alice NewName",
+      "email": "alice@example.com",
+      "phoneNumber": "+234111222333",
+      "gender": "female",
+      "password": "alicepassword",
+      "role": "user",
+      "cart": {
+        "items": []
+      }
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat_001",
+      "name": "Electronics",
+      "description": "All types of electronic items"
+    },
+    {
+      "id": "cat_002",
+      "name": "Fashion",
+      "description": "Men's and Women's clothing"
+    },
+    {
+      "id": "cat_1737679581056",
+      "name": "Updated Fashion Category",
+      "description": "Men's & Women's clothing and accessories"
+    },
+    {
+      "id": "cat_1737684997118",
+      "name": "New Category",
+      "description": "Description for new categoryy"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod_001",
+      "categoryId": "cat_001",
+      "name": "Smartphone X100",
+      "description": "A high-end smartphone with 128GB storage",
+      "price": 79.99,
+      "stock": 25,
+      "color": "Black",
+      "topSize": null,
+      "bottomSize": null,
+      "createdAt": "2025-01-01T10:00:00Z",
+      "updatedAt": "2025-01-24T01:00:24.411Z"
+    },
+    {
+      "id": "prod_002",
+      "categoryId": "cat_001",
+      "name": "Wireless Earbuds",
+      "description": "Noise-cancelling earbuds",
+      "price": 79.99,
+      "stock": 25,
+      "color": "White",
+      "topSize": null,
+      "bottomSize": null,
+      "createdAt": "2025-01-02T11:00:00Z",
+      "updatedAt": "2025-01-24T00:59:17.258Z"
+    },
+    {
+      "id": "prod_1737680216361",
+      "categoryId": "cat_001",
+      "name": "USB-C Cable",
+      "description": "Fast-charging cable",
+      "price": 10.99,
+      "stock": 50,
+      "color": "Black",
+      "topSize": null,
+      "bottomSize": null,
+      "createdAt": "2025-01-24T00:56:56.362Z",
+      "updatedAt": "2025-01-24T00:56:56.363Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "order_001",
+      "userId": "user_001",
+      "transactionId": "paystack_ref_123ABC",
+      "products": [
+        {
+          "productId": "prod_001",
+          "quantity": 2,
+          "priceAtPurchase": 799.99
+        },
+        {
+          "productId": "prod_002",
+          "quantity": 1,
+          "priceAtPurchase": 99.99
+        }
+      ],
+      "status": "paid",
+      "createdAt": "2025-01-15T09:30:00Z",
+      "paymentDetails": {
+        "provider": "paystack",
+        "reference": "abcdef123456",
+        "status": "success",
+        "channel": "card",
+        "currency": "NGN",
+        "amount": 1699.97,
+        "metadata": {
+          "custom_fields": [
+            {
+              "display_name": "Cart Items",
+              "variable_name": "cartItems",
+              "value": "2 x prod_001, 1 x prod_002"
+            }
+          ]
+        },
+        "ipAddress": "197.210.xxx.xxx"
+      }
+    },
+    {
+      "id": "order_1737683463777",
+      "userId": "user_1737676131404",
+      "transactionId": "dummy_paystack_ref",
+      "products": [
+        {
+          "productId": "prod_002",
+          "quantity": 22
+        }
+      ],
+      "status": "paid",
+      "createdAt": "2025-01-24T01:51:03.777Z",
+      "paymentDetails": {
+        "provider": "paystack",
+        "reference": "dummyReference123",
+        "status": "success",
+        "channel": "card",
+        "currency": "NGN",
+        "amount": 999.99,
+        "metadata": {}
+      }
+    }
+  ]
+}
