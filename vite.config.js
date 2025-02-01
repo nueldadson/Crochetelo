@@ -11,6 +11,7 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
 	plugins: [react()],
+	assetsInclude: ['**/*.html'], // Ensure Vite handles HTML files correctly
 	base: "/", // Ensure correct path handling for deployment
 	build: {
 		outDir: "dist", // Ensure output is placed in the 'dist' directory for Vercel
